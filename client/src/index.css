@@ -1,7 +1,7 @@
 body {
     margin: 0;
     font-family: 'Arial', sans-serif;
-    background-color: #f8f8f8;
+    
     color: #333;
 }
 
@@ -21,11 +21,7 @@ a {
     padding: 20px;
 }
 
-.header, .footer {
-    background-color: #fff;
-    padding: 20px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
+
 
 .footer {
     text-align: center;

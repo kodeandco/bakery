@@ -1,6 +1,5 @@
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #f8f8f8;
     margin: 0;
     padding: 0;
 }
@@ -19,12 +18,10 @@ body {
 
 .header h1 {
     font-size: 3rem;
-    color: #d2691e; /* Chocolate color */
 }
 
 .header p {
     font-size: 1.5rem;
-    color: #555;
 }
 
 .image-gallery {
@@ -63,77 +60,93 @@ body {
 .punchline {
     font-size: 1.5rem;
     font-style: italic;
-    color: #8b4513; /* SaddleBrown color */
     text-align: center;
     margin-top: 20px;
 }
+
 .landing-main {
-  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
-  background: #fff8f3;
-  color: #4b2e1e;
-  padding-bottom: 2rem;
+    font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+    background-image: url('./assets/img2.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    padding-bottom: 2rem;
+    position: relative;
+}
+
+.landing-main::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.2);
+    z-index: 1;
+}
+
+.landing-main > * {
+    position: relative;
+    z-index: 2;
 }
 
 .landing-hero {
-  text-align: center;
-  padding: 4rem 1rem 2rem 1rem;
+    text-align: center;
+    padding: 4rem 1rem 2rem 1rem;
 }
 
 .landing-title {
-  font-size: 2.8rem;
-  font-weight: 700;
-  color: #a85c3a;
-  margin-bottom: 0.5rem;
-  letter-spacing: -1px;
+    font-size: 2.8rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    letter-spacing: -1px;
 }
 
 .landing-subtitle {
-  font-size: 1.3rem;
-  color: #6e3c1b;
-  margin-bottom: 2rem;
+    font-size: 1.3rem;
+    margin-bottom: 2rem;
 }
 
 .section-heading {
-  font-size: 2rem;
-  font-weight: 600;
-  color: #a85c3a;
-  margin: 2rem 0 1rem 0;
-  text-align: center;
+    font-size: 2rem;
+    font-weight: 600;
+    margin: 2rem 0 1rem 0;
+    text-align: center;
 }
 
 .artisan-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1.5rem;
-  margin: 2rem 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
 }
 
 .artisan-card {
-  background: #fff;
-  border-radius: 1rem;
-  box-shadow: 0 2px 12px rgba(168, 92, 58, 0.08);
-  overflow: hidden;
-  text-align: center;
-  padding-bottom: 1rem;
-  transition: box-shadow 0.2s;
+    background-color: rgba(249, 239, 231, 0.632);
+    border-radius: 1rem;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    text-align: center;
+    padding-bottom: 1rem;
+    transition: box-shadow 0.2s;
 }
 
 .artisan-card:hover {
-  box-shadow: 0 4px 24px rgba(168, 92, 58, 0.18);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.18);
 }
 
 .artisan-img {
-  width: 100%;
-  height: 180px;
-  object-fit: cover;
-  border-bottom: 1px solid #f3e5d8;
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-bottom: 1px solid #f0f0f0;
 }
 
 .artisan-label {
-  font-size: 1.1rem;
-  font-weight: 500;
-  margin-top: 0.7rem;
-  color: #6e3c1b;
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin-top: 0.7rem;
 }
 
 .landing-sustainability,
@@ -141,44 +154,56 @@ body {
 .landing-timeline,
 .landing-joy,
 .landing-flavors {
-  margin: 2rem auto;
-  max-width: 800px;
-  padding: 1rem;
-  background: #fffdf8;
-  border-radius: 1rem;
-  box-shadow: 0 1px 8px rgba(168, 92, 58, 0.05);
+    margin: 2rem auto;
+    max-width: 800px;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 1rem;
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.05);
 }
 
 .landing-joy {
-  text-align: center;
+    text-align: center;
 }
 
 .joy-repetition {
-  margin-top: 1rem;
-  display: flex;
-  justify-content: center;
-  gap: 1.2rem;
-  flex-wrap: wrap;
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+    gap: 1.2rem;
+    flex-wrap: wrap;
 }
 
 .joy-word {
-  font-size: 1.3rem;
-  font-weight: 600;
-  color: #e6a97a;
-  background: #fff8f3;
-  padding: 0.3rem 1rem;
-  border-radius: 2rem;
-  box-shadow: 0 1px 4px rgba(168, 92, 58, 0.07);
+    font-size: 1.3rem;
+    font-weight: 600;
+    background: rgba(248, 242, 234, 0.791);
+    padding: 0.3rem 1rem;
+    border-radius: 2rem;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.07);
 }
 
 .flavors-quote {
-  font-size: 1.2rem;
-  font-style: italic;
-  color: #a85c3a;
-  text-align: center;
-  margin: 1.5rem 0;
-  padding: 1rem;
-  border-left: 4px solid #e6a97a;
-  background: #fff8f3;
-  border-radius: 0.5rem;
+    font-size: 1.2rem;
+    font-style: italic;
+    text-align: center;
+    margin: 1.5rem 0;
+    padding: 1rem;
+    border-left: 4px solid #ddd;
+   background: rgba(248, 242, 234, 0.791);
+    border-radius: 0.5rem;
+}
+
+@media (max-width: 768px) {
+    .landing-main {
+        background-attachment: scroll;
+    }
+    
+    .landing-title {
+        font-size: 2.2rem;
+    }
+    
+    .landing-subtitle {
+        font-size: 1.1rem;
+    }
 }
