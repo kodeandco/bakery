@@ -1,0 +1,66 @@
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f8f8;
+    color: #333;
+}
+
+h1, h2, h3 {
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+    color: #ff6347; /* Tomato color for links */
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.header, .footer {
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.footer {
+    text-align: center;
+    font-size: 0.9em;
+}
+
+.image-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+}
+
+.image-gallery img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.timeline {
+    margin: 20px 0;
+}
+
+.checkbox-list {
+    margin: 20px 0;
+}
+
+.checkbox-list label {
+    display: block;
+    margin: 5px 0;
+}
+
+.witty-punchline {
+    font-style: italic;
+    color: #555;
+    text-align: center;
+    margin: 20px 0;
+}
