@@ -1,59 +1,103 @@
 .timeline-chart {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-direction: row;
+  align-items: flex-start;
   margin: 20px 0;
-  padding: 20px;
-  background-color: #f9f9f9;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 0;
+  background: none;
+  box-shadow: none;
+  border-radius: 0;
 }
 
 .timeline {
   position: relative;
-  width: 100%;
-  max-width: 800px;
-  padding: 10px 0;
+  width: 400px;
+  min-width: 320px;
+  padding: 0 0 40px 0;
+  margin: 0;
 }
 
+.timeline-empty-space {
+  flex: 1;
+  min-width: 200px;
+  /* This leaves space on the right for future content */
+}
+
+.timeline-line {
+  position: absolute;
+  left: 30px;
+  top: 0;
+  bottom: 40px;
+  width: 4px;
+  background: linear-gradient(to bottom, #ff6347, #ff8c69, #ff6347);
+  border-radius: 2px;
+  z-index: 0;
+  transform: none;
+}
 .timeline-item {
   position: relative;
-  padding: 10px 20px;
-  margin: 10px 0;
-  border-radius: 5px;
-  background-color: #fff;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
+  padding: 20px 30px 20px 60px;
+  margin: 20px 0;
+  border-radius: 20px;
+  box-shadow: 0 2px 8px rgba(168,92,58,0.07);
+  width: 90%;
+  overflow: hidden;
+  transition: box-shadow 0.2s;
 }
 
-.timeline-item:hover {
-  transform: scale(1.02);
-}
-
-.timeline-item::before {
-  content: '';
+.timeline-geo-circle {
   position: absolute;
-  left: -10px;
-  top: 20px;
-  width: 10px;
-  height: 10px;
+  left: 10px;
+  top: 10px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
-  background-color: #ff6347; /* Tomato color */
+  background: radial-gradient(circle, #a85c3a 40%, #ffe5b4 100%);
+  z-index: 0;
+  opacity: 0.15;
+  pointer-events: none;
 }
 
-.timeline-item h3 {
-  margin: 0;
-  font-size: 1.2em;
-  color: #333;
+.timeline-dot {
+  position: absolute;
+  left: 30px;
+  top: 50%;
+  width: 16px;
+  height: 16px;
+  background: #a85c3a;
+  border-radius: 50%;
+  transform: translateY(-50%);
+  box-shadow: 0 2px 8px rgba(168,92,58,0.15);
+  z-index: 1;
+}
+.timeline-content {
+  position: relative;
+  z-index: 1;
 }
 
-.timeline-item p {
-  margin: 5px 0 0;
-  color: #666;
+.timeline-year {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #222;
 }
 
-.timeline-title {
-  font-size: 1.5em;
-  margin-bottom: 20px;
-  color: #ff6347; /* Tomato color */
+.timeline-event {
+  font-size: 1.1rem;
+  color: #444;
+  margin-top: 0.5rem;
+}
+
+.timeline-glow {
+  /* Optional: subtle glow effect */
+  position: absolute;
+  left: 30px;
+  top: 50%;
+  width: 24px;
+  height: 24px;
+  background: rgba(255, 99, 71, 0.2);
+  border-radius: 50%;
+  transform: translateY(-50%);
+  filter: blur(8px);
+  z-index: 0; 
+
 }

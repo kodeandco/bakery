@@ -54,7 +54,7 @@ const Navbar = () => {
                     animate={{ opacity: 1 }}
                     transition={{ duration: 0.5 }}
                 >
-                    <h1>Channel9 Bakery</h1>
+                    <h1>Channel9 </h1>
                 </motion.div>
 
                 {/* Desktop Navigation */}
@@ -63,10 +63,9 @@ const Navbar = () => {
                         <motion.li
                             key={item.label}
                             whileHover={{ scale: 1.1 }}
-                            transition={{ type: 'spring', stiffness: 300 }}
                             initial={{ opacity: 0, y: -20 }}
                             animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.3, delay: index * 0.1 }}
+                            transition={{ type: 'spring', stiffness: 300, duration: 0.3, delay: index * 0.1 }}
                         >
                             <a href={item.href}>{item.label}</a>
                         </motion.li>
