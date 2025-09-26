@@ -14,7 +14,11 @@ const CircleScroll = () => {
 
   // Map scroll progress to scale and opacity
   const scale = useTransform(scrollYProgress, [0, 1], [0.2, 18]);
-  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0.18, 1, 1, 0]);
+  const opacity = useTransform(
+    scrollYProgress,
+    [0, 0.05, 0.2, 0.8, 1],
+    [0, 0.18, 1, 1, 0]
+  );
 
   return (
     <div ref={ref} className="circle-scroll-container">

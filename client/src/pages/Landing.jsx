@@ -1,26 +1,44 @@
 /* eslint-disable no-unused-vars */
-import React, { useState } from "react";
+import React, { useRef, useEffect, useState } from "react";
+import { useScroll } from "framer-motion";
 import { motion } from "framer-motion";
-import TimelineChart from "../components/TimelineChart";
-import CheckboxList from "../components/CheckboxList";
+import CircleScroll from "../components/CircleScroll";
 import "./Landing.css";
 import ArtisansGoodsShowcase from "../components/ArtisansGoodsShowcase";
-import CircleScroll from "../components/CircleScroll";
+import TimelineChart from "../components/TimelineChart";
 import ColorBlock from "../components/ColorBlock";
+// import CheckboxList from "../components/CheckboxList";
 
-const sustainabilityPoints = [
-  "Locally-sourced, organic ingredients",
-  "Zero artificial additives",
-  "Energy-efficient ovens",
-  "Compostable packaging",
-  "Supporting local farmers",
-];
+const OLIVE = "var(--bakery-pastel-olive)";
+const BROWN = "var(--bakery-brown)";
 
 const Landing = () => {
-  const [nextBg, setNextBg] = useState("#fff8f3");
+  const circleRef = useRef(null);
+  const [bgColor, setBgColor] = useState(OLIVE);
+
+  // Listen to scroll progress of the circle section
+  const { scrollYProgress } = useScroll({
+    target: circleRef,
+    offset: ["start end", "end start"]
+  });
+
+  useEffect(() => {
+    const unsubscribe = scrollYProgress.on("change", (v) => {
+      if (v > 0.1 && v < 0.9) {
+        setBgColor(BROWN); // Circle expanding
+      } else {
+        setBgColor(OLIVE); // Circle contracted or finished
+      }
+    });
+    return () => unsubscribe();
+  }, [scrollYProgress]);
 
   return (
-    <main style={{ background: nextBg, transition: "background 0.5s" }}>
+    <main style={{ background: bgColor, minHeight: "100vh", transition: "background 0.7s" }}>
+      <div ref={circleRef}>
+        <CircleScroll />
+      </div>
+
       {/* Tagline */}
       <motion.section
         className="landing-hero"
@@ -61,27 +79,24 @@ const Landing = () => {
         <TimelineChart />
       </motion.section>
 
-      <CircleScroll onExpandEnd={(color) => setNextBg(color)} />
-      <ColorBlock color={nextBg}>
- {/* Quality & Technique */}
-      <motion.section
-        className="landing-quality"
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8 }}
-      >
-        <h2 className="section-heading">
-          Quality, locally-sourced ingredients. Modern baking techniques.
-        </h2>
-        <p>
-          Creating delicious baked goods without artificial additives or harmful
-          processes.
-        </p>
-      </motion.section>
+      <ColorBlock color={bgColor}>
+        {/* Quality & Technique */}
+        <motion.section
+          className="landing-quality"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+        >
+          <h2 className="section-heading">
+            Quality, locally-sourced ingredients. Modern baking techniques.
+          </h2>
+          <p>
+            Creating delicious baked goods without artificial additives or harmful
+            processes.
+          </p>
+        </motion.section>
       </ColorBlock>
-
-     
 
       {/* Joy & Community */}
       <motion.section
