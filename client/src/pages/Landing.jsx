@@ -1,9 +1,9 @@
 /* eslint-disable no-unused-vars */
 import React, { useRef, useEffect, useState } from "react";
 import { useScroll } from "framer-motion";
-import { motion } from "framer-motion";
 import CircleScroll from "../components/CircleScroll";
 import "./Landing.css";
+import { motion } from "framer-motion";
 import ArtisansGoodsShowcase from "../components/ArtisansGoodsShowcase";
 import TimelineChart from "../components/TimelineChart";
 import ColorBlock from "../components/ColorBlock";
@@ -13,38 +13,33 @@ const OLIVE = "var(--bakery-pastel-olive)";
 const BROWN = "var(--bakery-brown)";
 
 const Landing = () => {
-  const circleRef = useRef(null);
   const [bgColor, setBgColor] = useState(OLIVE);
+  const triggerRef = useRef(null);
 
-  // Listen to scroll progress of the circle section
-  const { scrollYProgress } = useScroll({
-    target: circleRef,
-    offset: ["start end", "end start"]
-  });
-
-  useEffect(() => {
-    const unsubscribe = scrollYProgress.on("change", (v) => {
-      if (v > 0.1 && v < 0.9) {
-        setBgColor(BROWN); // Circle expanding
-      } else {
-        setBgColor(OLIVE); // Circle contracted or finished
-      }
-    });
-    return () => unsubscribe();
-  }, [scrollYProgress]);
+  const handleScrollProgress = (progress) => {
+    // Smoother background transition timing
+    if (progress > 0.05 && progress < 0.95) {
+      setBgColor(BROWN);
+    } else {
+      setBgColor(OLIVE);
+    }
+  };
 
   return (
-    <main style={{ background: bgColor, minHeight: "100vh", transition: "background 0.7s" }}>
-      <div ref={circleRef}>
-        <CircleScroll />
-      </div>
+    <main style={{ 
+      background: bgColor, 
+      minHeight: "100vh", 
+      transition: "background 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94)" 
+    }}>
+      {/* Circle Scroll Animation - overlays everything */}
+      <CircleScroll onScrollProgress={handleScrollProgress} triggerElement={triggerRef} />
 
       {/* Tagline */}
       <motion.section
         className="landing-hero"
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
+        transition={{ duration: 1.2, ease: [0.25, 0.46, 0.45, 0.94] }}
       >
         <h1 className="landing-title">
           Pure, inventive flavors—baked sustainably.
@@ -53,6 +48,9 @@ const Landing = () => {
           Classic favorites and new discoveries, baked a different way.
         </p>
       </motion.section>
+
+      {/* This div acts as the trigger for the circle animation */}
+      <div ref={triggerRef} style={{ height: "120vh" }} />
 
       <ArtisansGoodsShowcase />
 
@@ -74,7 +72,7 @@ const Landing = () => {
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.8 }}
+        transition={{ duration: 1, ease: "easeOut" }}
       >
         <TimelineChart />
       </motion.section>
@@ -86,7 +84,7 @@ const Landing = () => {
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 1, ease: "easeOut" }}
         >
           <h2 className="section-heading">
             Quality, locally-sourced ingredients. Modern baking techniques.
@@ -104,7 +102,7 @@ const Landing = () => {
         initial={{ opacity: 0, scale: 0.95 }}
         whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.7 }}
+        transition={{ duration: 1, ease: [0.25, 0.46, 0.45, 0.94] }}
       >
         <h2 className="section-heading">
           More delicious treats. More room for joy and community in every bite.
@@ -116,7 +114,11 @@ const Landing = () => {
               className="joy-word"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: i * 0.1 }}
+              transition={{ 
+                duration: 0.6, 
+                delay: i * 0.1,
+                ease: "easeOut"
+              }}
             >
               more
             </motion.span>
@@ -130,7 +132,7 @@ const Landing = () => {
         initial={{ opacity: 0, x: -40 }}
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.8 }}
+        transition={{ duration: 1, ease: [0.25, 0.46, 0.45, 0.94] }}
       >
         <blockquote className="flavors-quote">
           Real flavors. Classic favorites and new discoveries, baked a different

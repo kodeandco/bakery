@@ -4,13 +4,16 @@
     padding: 20px;
     display: flex;
     position: sticky;
-    top: 20px; /* 20px down from top */
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    box-sizing: border-box;
     z-index: 1000;
     justify-content: space-between;
     align-items: center;
     box-shadow: 0 4px 20px rgba(63, 54, 54, 0.15);
-    border-radius: 50px;
-    margin: 0 20px;
+    margin: 0;
     transition: all 0.3s ease;
 }
 
@@ -145,9 +148,9 @@
 @media (max-width: 768px) {
     .navbar {
         padding: 15px 20px;
-        margin: 0 10px;
-        border-radius: 25px;
-        top: 10px; /* Slightly less spacing on mobile */
+        box-sizing: border-box;
+        /* Removed margin and border-radius for full width */
+        /* Removed top spacing */
     }
     
     .navbar h1 {
@@ -179,8 +182,9 @@
 /* Tablet responsive */
 @media (max-width: 1024px) and (min-width: 769px) {
     .navbar {
-        margin: 0 15px;
+        /* Removed margin for full width */
         padding: 18px;
+        box-sizing: border-box;
     }
     
     .navbar h1 {
@@ -192,20 +196,19 @@
     }
 }
 
-/* Large screens */
+/* Large screens - removed max-width constraint */
 @media (min-width: 1200px) {
     .navbar {
-        max-width: 1200px;
-        margin: 0 auto;
+        /* Full width on all screen sizes */
     }
 }
 
 /* Extra small screens */
 @media (max-width: 480px) {
     .navbar {
-        margin: 0 5px;
+        /* Removed margin and top spacing for full width */
         padding: 12px 15px;
-        top: 5px;
+        box-sizing: border-box;
     }
     
     .navbar h1 {

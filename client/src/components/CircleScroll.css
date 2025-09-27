@@ -1,23 +1,23 @@
 .circle-scroll-container {
   position: relative;
   width: 100%;
-  height: 200px;
+  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: visible;
+  overflow: hidden;
 }
 
 .circle-scroll {
-  width: 120px;
-  height: 120px;
+  width: 384px;
+  height: 384px;
   border-radius: 50%;
-  box-shadow: 0 4px 24px rgba(168,92,58,0.12);
+  box-shadow: 0 0 100px rgba(168, 92, 58, 0.4);
   pointer-events: none;
   position: fixed;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  z-index: 1000;
+  z-index: 10;
   background: var(--bakery-brown);
 }

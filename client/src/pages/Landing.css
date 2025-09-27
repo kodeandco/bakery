@@ -66,7 +66,7 @@ body {
 
 .landing-main {
   font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
-  background: var(--bakery-cream);
+  background: var(--bakery-light-olive);
   color: var(--bakery-dark-brown);
   padding-bottom: 2rem;
 }

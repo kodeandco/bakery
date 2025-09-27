@@ -14,7 +14,7 @@
     padding-bottom: 1rem;
     transition: box-shadow 0.2s;
     font-family: 'League Script', cursive;
-    font-weight: 800;
+    font-weight: 900;
 }
 
 .artisan-card:hover {
@@ -32,5 +32,5 @@
     font-size: 1.2rem;
     font-family: 'League Script', cursive;
     margin-top: 0.7rem;
-    font-weight: 800;
+    font-weight: 900;
 }
