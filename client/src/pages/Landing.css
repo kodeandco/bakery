@@ -9,6 +9,7 @@ body {
     flex-direction: column;
     align-items: center;
     padding: 20px;
+       
 }
 
 .header {
@@ -66,7 +67,7 @@ body {
 
 .landing-main {
   font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
-  background: var(--bakery-light-olive);
+  background-color-color: var(--bakery-light-olive);
   color: var(--bakery-dark-brown);
   padding-bottom: 2rem;
 }
@@ -74,7 +75,7 @@ body {
 .landing-hero {
   text-align: center;
   padding: 4rem 1rem 2rem 1rem;
-  background: var(--bakery-pastel-olive);
+  background-color: rgba(83, 117, 82, 0.92)
 }
 
 .landing-title {
@@ -87,6 +88,8 @@ body {
 
 .landing-subtitle {
   font-size: 1.3rem;
+   font-family: 'League Script', cursive;
+   font-weight: 900;;
   color: var(--bakery-dark-brown);
   margin-bottom: 2rem;
 }
@@ -99,15 +102,9 @@ body {
   text-align: center;
 }
 
-.artisan-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1.5rem;
-  margin: 2rem 0;
-}
 
 .artisan-card {
-  background: var(--bakery-cream);
+  background-color: var(--bakery-cream);
   border-radius: 1rem;
   box-shadow: 0 2px 12px rgba(168, 92, 58, 0.08);
   overflow: hidden;
@@ -142,14 +139,14 @@ body {
   margin: 2rem auto;
   max-width: 800px;
   padding: 1rem;
-  background: var(--bakery-pastel-yellow);
+  background-color: var(--bakery-pastel-yellow);
   border-radius: 1rem;
   box-shadow: 0 1px 8px rgba(168, 92, 58, 0.05);
 }
 
 .landing-joy {
   text-align: center;
-  background: var(--bakery-soft-red);
+  background-color: var(--bakery-soft-red);
 }
 
 .joy-repetition {
@@ -164,7 +161,7 @@ body {
   font-size: 1.3rem;
   font-weight: 600;
   color: var(--bakery-pastel-yellow);
-  background: var(--bakery-cream);
+  background-color: var(--bakery-cream);
   padding: 0.3rem 1rem;
   border-radius: 2rem;
   box-shadow: 0 1px 4px rgba(168, 92, 58, 0.07);
@@ -178,13 +175,13 @@ body {
   margin: 1.5rem 0;
   padding: 1rem;
   border-left: 4px solid var(--bakery-pastel-yellow);
-  background: var(--bakery-cream);
+  background-color: var(--bakery-cream);
   border-radius: 0.5rem;
 }
 
 @media (max-width: 768px) {
     .landing-main {
-        background-attachment: scroll;
+        background-color-attachment: scroll;
     }
     
     .landing-title {

@@ -34,37 +34,72 @@ const Landing = () => {
       {/* Circle Scroll Animation - overlays everything */}
       <CircleScroll onScrollProgress={handleScrollProgress} triggerElement={triggerRef} />
 
-      {/* Tagline */}
+      {/* Hero Section with Left Text and Right Image */}
       <motion.section
         className="landing-hero"
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1.2, ease: [0.25, 0.46, 0.45, 0.94] }}
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          width: "100%",
+          maxWidth: "1200px",
+          margin: "0 auto",
+          padding: "0 2rem",
+          minHeight: "80vh"
+        }}
       >
-        <h1 className="landing-title">
-          Pure, inventive flavors—baked sustainably.
-        </h1>
-        <p className="landing-subtitle">
-          Classic favorites and new discoveries, baked a different way.
-        </p>
+        {/* Left side - Text content */}
+        <div style={{
+          flex: "0 0 auto",
+          maxWidth: "50%",
+          textAlign: "left"
+        }}>
+          <h1 className="landing-title" style={{
+            margin: "0 0 1rem 0",
+            textAlign: "left"
+          }}>
+            Pure, inventive flavors—baked sustainably.
+          </h1>
+          <p className="landing-subtitle" style={{
+            margin: "0",
+            textAlign: "left"
+          }}>
+            Classic favorites and new discoveries, baked a different way.
+          </p>
+        </div>
+
+        {/* Right side - Image */}
+        <motion.div
+          initial={{ opacity: 0, x: 40 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 1.2, delay: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
+          style={{
+            flex: "0 0 auto",
+            maxWidth: "45%"
+          }}
+        >
+          <img
+            src="/path-to-your-image.jpg" // Replace with your actual image path
+            alt="Artisanal baked goods"
+            style={{
+              width: "100%",
+              height: "auto",
+              maxHeight: "60vh",
+              objectFit: "cover",
+              borderRadius: "8px",
+              boxShadow: "0 10px 30px rgba(0, 0, 0, 0.1)"
+            }}
+          />
+        </motion.div>
       </motion.section>
 
       {/* This div acts as the trigger for the circle animation */}
       <div ref={triggerRef} style={{ height: "120vh" }} />
 
       <ArtisansGoodsShowcase />
-
-      {/* Sustainability Commitment */}
-      {/* <motion.section
-      className="landing-sustainability"
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.8 }}
-    > */}
-
-      {/* <CheckboxList items={sustainabilityPoints} /> */}
-      {/* </motion.section> */}
 
       {/* Timeline Chart */}
       <motion.section

@@ -2,7 +2,7 @@ import React, { useRef, useEffect } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import "./CircleScroll.css";
 
-const CIRCLE_BG = "#a85c3a";
+const CIRCLE_BG = "#4d2d1eff";
 
 const CircleScroll = ({ onScrollProgress, triggerElement }) => {
   // Use the trigger element or document body for scroll detection

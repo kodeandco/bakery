@@ -1,8 +1,18 @@
+.landing-artisan{
+    background-color: rgba(42, 19, 19, 0.92);
+    padding: 2rem 1rem;
+    width: 100%;
+    height: auto;
+color: beige;
+}
+
 .artisan-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 1.5rem;
     margin: 2rem 0;
+    color: beige;
+     
 }
 
 .artisan-card {
@@ -15,6 +25,7 @@
     transition: box-shadow 0.2s;
     font-family: 'League Script', cursive;
     font-weight: 900;
+    color: beige;
 }
 
 .artisan-card:hover {
@@ -33,4 +44,5 @@
     font-family: 'League Script', cursive;
     margin-top: 0.7rem;
     font-weight: 900;
+    color: beige;
 }
