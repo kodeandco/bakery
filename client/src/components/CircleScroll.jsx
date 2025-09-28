@@ -1,32 +1,45 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import "./CircleScroll.css";
 
-const CIRCLE_BG = "#a85c3a";
+const CIRCLE_BG = "#4d2d1eff";
 
-const CircleScroll = () => {
-  const ref = useRef(null);
-  // Get scroll progress for this section (0 to 1)
+const CircleScroll = ({ onScrollProgress, triggerElement }) => {
+  // Use the trigger element or document body for scroll detection
   const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start end", "end start"]
+    target: triggerElement,
+    offset: ["start center", "end center"]
   });
 
-  // Map scroll progress to scale and opacity
-  const scale = useTransform(scrollYProgress, [0, 1], [0.2, 18]);
-  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0.18, 1, 1, 0]);
+  // Map scroll progress to scale and opacity for full screen circle animation
+  const scale = useTransform(scrollYProgress, [0, 0.6, 1], [0.1, 8, 0]);
+  const opacity = useTransform(
+    scrollYProgress,
+    [0, 0.1, 0.5, 0.9, 1],
+    [0, 0.3, 1, 1, 0]
+  );
+
+  // Report scroll progress to parent component for background color changes
+  useEffect(() => {
+    if (onScrollProgress) {
+      const unsubscribe = scrollYProgress.on("change", (v) => {
+        onScrollProgress(v);
+      });
+      return () => unsubscribe();
+    }
+  }, [scrollYProgress, onScrollProgress]);
 
   return (
-    <div ref={ref} className="circle-scroll-container">
-      <motion.div
-        className="circle-scroll"
-        style={{
-          background: CIRCLE_BG,
-          scale,
-          opacity
-        }}
-      />
-    </div>
+    <motion.div
+      className="circle-scroll"
+      style={{
+        background: CIRCLE_BG,
+        scale,
+        opacity,
+        x: "-50%",
+        y: "-50%"
+      }}
+    />
   );
 };
 

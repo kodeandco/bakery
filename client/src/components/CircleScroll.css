@@ -1,22 +1,64 @@
+/* Your current setup should work, but let's ensure proper hierarchy */
+
 .circle-scroll-container {
   position: relative;
   width: 100%;
-  height: 200px; /* Adjust height for scroll trigger */
+  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: visible;
+  overflow: hidden;
 }
 
 .circle-scroll {
-  width: 120px;
-  height: 120px;
+  width: 384px;
+  height: 384px;
   border-radius: 50%;
-  box-shadow: 0 4px 24px rgba(168,92,58,0.12);
+  box-shadow: 0 0 100px rgba(76, 41, 25, 0.4);
   pointer-events: none;
-  position: fixed; /* changed from absolute to fixed */
+  position: fixed;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  z-index: 1000; /* high value to ensure full overlap */
+  z-index: 1; /* Much lower than navbar's 1000 */
+  background: var(--bakery-brown);
+}
+
+/* Z-Index Hierarchy Reference */
+/* 
+  Navbar: z-index: 1000 (your existing navbar)
+  Circle: z-index: 1 (stays below navbar)
+  Content: z-index: 2-10 (above circle, below navbar)
+*/
+
+/* Ensure content sections are above the circle */
+.landing-hero,
+.landing-section,
+.landing-timeline,
+.landing-quality,
+.landing-joy,
+.landing-flavors,
+main > section,
+section {
+  position: relative;
+  z-index: 5; /* Above circle (1) but below navbar (1000) */
+}
+
+/* Interactive elements */
+button,
+a,
+input,
+textarea,
+select {
+  position: relative;
+  z-index: 10; /* Ensure clickability */
+}
+
+/* Debug styles - add these temporarily to see what's happening */
+
+
+.circle-scroll {
+  /* Temporary debug - make circle semi-transparent to see overlap */
+  opacity: 0.7;
+
 }

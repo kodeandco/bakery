@@ -1,0 +1,27 @@
+/* Bakery Color Palette */
+:root {
+  --bakery-brown: #a85c3a;           /* Chocolate brown */
+  --bakery-dark-brown: #6e3c1b;      /* Deep brown */
+  --bakery-pastel-olive: #b5c792;    /* Pastel olive green */
+  --bakery-light-olive: #c3ce9e;     /* Light olive green */
+  --bakery-cream: #fff8f3;           /* Cream background */
+  --bakery-pastel-yellow: #ffe5b4;   /* Pastel yellow */
+  --bakery-soft-red: #ffd6d6;        /* Soft red */
+  --bakery-white: #fff;
+}
+
+/* Example usage for backgrounds and text */
+.bg-bakery-brown    { background: var(--bakery-brown); }
+.bg-bakery-olive    { background: var(--bakery-pastel-olive); }
+.bg-bakery-cream    { background: var(--bakery-cream); }
+.bg-bakery-yellow   { background: var(--bakery-pastel-yellow); }
+.bg-bakery-red      { background: var(--bakery-soft-red); }
+
+.text-bakery-brown  { color: var(--bakery-brown); }
+.text-bakery-dark   { color: var(--bakery-dark-brown); }
+.text-bakery-olive  { color: var(--bakery-pastel-olive); }
+.text-bakery-yellow { color: var(--bakery-pastel-yellow); }
+.text-bakery-red    { color: var(--bakery-soft-red); }
+
+/* Example for border or accent */
+.border-bakery-brown { border-color: var(--bakery-brown); }
