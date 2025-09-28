@@ -64,7 +64,7 @@ body, #root, main {
 }
 
 .nav-links li a:hover {
-    color: #d95d39;
+    color:rgba(83, 117, 82, 0.92);
     background-color: rgba(217, 93, 57, 0.1);
 }
 
