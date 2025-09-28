@@ -1,7 +1,14 @@
+/* Ensure all elements respect viewport width */
+* {
+    max-width: 100vw;
+    box-sizing: border-box;
+}
+
 body {
     font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
+    overflow-x: hidden;
 }
 
 .landing-container {
@@ -9,13 +16,12 @@ body {
     flex-direction: column;
     align-items: center;
     padding: 20px;
-       
+    width: 100%;
+    max-width: 100vw;
+    box-sizing: border-box;
 }
 
-.header {
-    text-align: center;
-    margin-bottom: 40px;
-}
+
 
 .header h1 {
     font-size: 3rem;
@@ -30,26 +36,57 @@ body {
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 15px;
     margin-bottom: 40px;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
 }
 
 .image-gallery img {
     width: 100%;
+    max-width: 100%;
     border-radius: 10px;
-    transition: transform 0.3s;
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transform: translateY(-100vh) rotate(-30deg);
+    animation: slideDownRotate 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+@keyframes slideDownRotate {
+    0% {
+        transform: translateY(-100vh) rotate(-30deg);
+        opacity: 0;
+    }
+    60% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(0) rotate(-5deg);
+        opacity: 1;
+    }
 }
 
 .image-gallery img:hover {
-    transform: scale(1.05);
+    transform: translateY(0) rotate(0deg) scale(1.05);
 }
+
+/* Add staggered animation delays for multiple images */
+.image-gallery img:nth-child(1) { animation-delay: 0.1s; }
+.image-gallery img:nth-child(2) { animation-delay: 0.2s; }
+.image-gallery img:nth-child(3) { animation-delay: 0.3s; }
+.image-gallery img:nth-child(4) { animation-delay: 0.4s; }
+.image-gallery img:nth-child(5) { animation-delay: 0.5s; }
+.image-gallery img:nth-child(6) { animation-delay: 0.6s; }
 
 .timeline {
     width: 100%;
     max-width: 800px;
     margin: 40px auto;
+    box-sizing: border-box;
+    overflow-x: auto;
 }
 
 .checkbox-list {
     margin: 20px 0;
+    width: 100%;
 }
 
 .checkbox-list label {
@@ -66,69 +103,84 @@ body {
 }
 
 .landing-main {
-  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
-  background-color-color: var(--bakery-light-olive);
-  color: var(--bakery-dark-brown);
-  padding-bottom: 2rem;
+    font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+    background-color: var(--bakery-light-olive);
+    color: var(--bakery-dark-brown);
+    padding-bottom: 2rem;
+    width: 100%;
+    max-width: 100vw;
+    overflow-x: hidden;
 }
 
 .landing-hero {
-  text-align: center;
-  padding: 4rem 1rem 2rem 1rem;
-  background-color: rgba(83, 117, 82, 0.92)
+    text-align: center;
+    padding: 4rem 1rem 2rem 1rem;
+    background-color: rgba(83, 117, 82, 0.92);
+    width: 100%;
+    max-width: 100vw;
+    box-sizing: border-box;
 }
 
 .landing-title {
-  font-size: 2.8rem;
-  font-weight: 700;
-  color: var(--bakery-brown);
-  margin-bottom: 0.5rem;
-  letter-spacing: -1px;
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: var(--bakery-brown);
+    margin-bottom: 0.5rem;
+    letter-spacing: -1px;
 }
 
 .landing-subtitle {
-  font-size: 1.3rem;
-   font-family: 'League Script', cursive;
-   font-weight: 900;;
-  color: var(--bakery-dark-brown);
-  margin-bottom: 2rem;
+    font-size: 1.3rem;
+    font-family: 'League Script', cursive;
+    font-weight: 900;
+    color: var(--bakery-dark-brown);
+    margin-bottom: 2rem;
 }
 
 .section-heading {
-  font-size: 2rem;
-  font-weight: 600;
-  color: var(--bakery-brown);
-  margin: 2rem 0 1rem 0;
-  text-align: center;
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--bakery-brown);
+    margin: 2rem 0 1rem 0;
+    text-align: center;
 }
 
-
 .artisan-card {
-  background-color: var(--bakery-cream);
-  border-radius: 1rem;
-  box-shadow: 0 2px 12px rgba(168, 92, 58, 0.08);
-  overflow: hidden;
-  text-align: center;
-  padding-bottom: 1rem;
-  transition: box-shadow 0.2s;
+    background-color: var(--bakery-cream);
+    border-radius: 1rem;
+    overflow: hidden;
+    text-align: center;
+    padding-bottom: 1rem;
+    transition: transform 0.3s ease;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
 }
 
 .artisan-card:hover {
-  box-shadow: 0 4px 24px rgba(168, 92, 58, 0.18);
+    transform: translateY(-5px);
 }
 
 .artisan-img {
-  width: 100%;
-  height: 180px;
-  object-fit: cover;
-  border-bottom: 1px solid var(--bakery-light-olive);
+    width: 100%;
+    max-width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-bottom: 1px solid var(--bakery-light-olive);
+    transform: translateY(-100vh) rotate(-30deg);
+    animation: slideDownRotate 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
 }
 
+/* Staggered delays for artisan images */
+.artisan-img:nth-child(1) { animation-delay: 0.1s; }
+.artisan-img:nth-child(2) { animation-delay: 0.3s; }
+.artisan-img:nth-child(3) { animation-delay: 0.5s; }
+
 .artisan-label {
-  font-size: 1.1rem;
-  font-weight: 500;
-  margin-top: 0.7rem;
-  color: var(--bakery-dark-brown);
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin-top: 0.7rem;
+    color: var(--bakery-dark-brown);
 }
 
 .landing-sustainability,
@@ -136,60 +188,94 @@ body {
 .landing-timeline,
 .landing-joy,
 .landing-flavors {
-  margin: 2rem auto;
-  max-width: 800px;
-  padding: 1rem;
-  background-color: var(--bakery-pastel-yellow);
-  border-radius: 1rem;
-  box-shadow: 0 1px 8px rgba(168, 92, 58, 0.05);
+    margin: 2rem auto;
+    max-width: min(800px, calc(100vw - 4rem)); /* Responsive max-width */
+    width: 100%;
+    padding: 1rem;
+    background-color: var(--bakery-pastel-yellow);
+    border-radius: 1rem;
+    box-sizing: border-box;
 }
 
 .landing-joy {
-  text-align: center;
-  background-color: var(--bakery-soft-red);
+    text-align: center;
+    background-color: var(--bakery-soft-red);
 }
 
 .joy-repetition {
-  margin-top: 1rem;
-  display: flex;
-  justify-content: center;
-  gap: 1.2rem;
-  flex-wrap: wrap;
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+    gap: 1.2rem;
+    flex-wrap: wrap;
+    width: 100%;
 }
 
 .joy-word {
-  font-size: 1.3rem;
-  font-weight: 600;
-  color: var(--bakery-pastel-yellow);
-  background-color: var(--bakery-cream);
-  padding: 0.3rem 1rem;
-  border-radius: 2rem;
-  box-shadow: 0 1px 4px rgba(168, 92, 58, 0.07);
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--bakery-pastel-yellow);
+    background-color: var(--bakery-cream);
+    padding: 0.3rem 1rem;
+    border-radius: 2rem;
 }
 
 .flavors-quote {
-  font-size: 1.2rem;
-  font-style: italic;
-  color: var(--bakery-brown);
-  text-align: center;
-  margin: 1.5rem 0;
-  padding: 1rem;
-  border-left: 4px solid var(--bakery-pastel-yellow);
-  background-color: var(--bakery-cream);
-  border-radius: 0.5rem;
+    font-size: 1.2rem;
+    font-style: italic;
+    color: var(--bakery-brown);
+    text-align: center;
+    margin: 1.5rem 0;
+    padding: 1rem;
+    border-left: 4px solid var(--bakery-pastel-yellow);
+    background-color: var(--bakery-cream);
+    border-radius: 0.5rem;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 @media (max-width: 768px) {
     .landing-main {
-        background-color-attachment: scroll;
+        background-attachment: scroll;
     }
     
     .landing-title {
         font-size: 2.2rem;
-       
     }
     
     .landing-subtitle {
         font-size: 1.1rem;
+    }
+    
+    .header h1 {
+        font-size: 2rem;
+    }
+    
+    .header p {
+        font-size: 1.2rem;
+    }
+    
+    .image-gallery {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 10px;
+    }
+    
+    .landing-hero {
+        padding: 2rem 0.5rem;
+    }
+    
+    /* Reduce animation intensity on mobile */
+    @keyframes slideDownRotate {
+        0% {
+            transform: translateY(-50vh) rotate(-15deg);
+            opacity: 0;
+        }
+        60% {
+            opacity: 1;
+        }
+        100% {
+            transform: translateY(0) rotate(-2deg);
+            opacity: 1;
+        }
     }
 }

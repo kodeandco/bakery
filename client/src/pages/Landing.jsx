@@ -28,7 +28,7 @@ const Landing = () => {
   return (
     <main style={{ 
       background: bgColor, 
-      minHeight: "100vh", 
+     
       transition: "background 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94)" 
     }}>
       {/* Circle Scroll Animation - overlays everything */}
@@ -45,7 +45,7 @@ const Landing = () => {
           alignItems: "center",
           justifyContent: "space-between",
           width: "100%",
-          maxWidth: "1200px",
+       
           margin: "0 auto",
           padding: "0 2rem",
           minHeight: "80vh"
@@ -82,7 +82,7 @@ const Landing = () => {
           }}
         >
           <img
-            src="/path-to-your-image.jpg" // Replace with your actual image path
+            src="/assets/image.png" // Replace with your actual image path
             alt="Artisanal baked goods"
             style={{
               width: "100%",
@@ -90,7 +90,7 @@ const Landing = () => {
               maxHeight: "60vh",
               objectFit: "cover",
               borderRadius: "8px",
-              boxShadow: "0 10px 30px rgba(0, 0, 0, 0.1)"
+            
             }}
           />
         </motion.div>
