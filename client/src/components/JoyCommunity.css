@@ -1,0 +1,36 @@
+.landing-sustainability,
+.landing-quality,
+.landing-timeline,
+.landing-joy,
+.landing-flavors {
+    margin: 2rem auto;
+    max-width: min(800px, calc(100vw - 4rem));
+    width: 100%;
+    padding: 1rem;
+    background-color: var(--bakery-pastel-yellow);
+    border-radius: 1rem;
+    box-sizing: border-box;
+}
+
+.landing-joy {
+    text-align: center;
+    background-color: var(--bakery-soft-red);
+}
+
+.joy-repetition {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+    gap: 1.2rem;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.joy-word {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--bakery-pastel-yellow);
+    background-color: var(--bakery-cream);
+    padding: 0.3rem 1rem;
+    border-radius: 2rem;
+}

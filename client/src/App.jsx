@@ -7,13 +7,13 @@ import ErrorBoundary from './components/ErrorBoundary';
 
 const App = () => {
     return (
-        <ErrorBoundary>
+      
             <div>
                 <Navbar />
                 <Landing />
                 <Footer />
             </div>
-        </ErrorBoundary>
+       
     );
 };
 

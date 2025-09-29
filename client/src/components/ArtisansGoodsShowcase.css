@@ -3,7 +3,7 @@
     padding: 2rem 1rem;
     width: 100%;
     height: auto;
-color: beige;
+    color: beige;
 }
 
 .artisan-grid {
@@ -12,7 +12,6 @@ color: beige;
     gap: 1.5rem;
     margin: 2rem 0;
     color: beige;
-     
 }
 
 .artisan-card {
@@ -45,4 +44,57 @@ color: beige;
     margin-top: 0.7rem;
     font-weight: 900;
     color: beige;
+}
+
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+    .artisan-section {
+        padding: 1.5rem 0.75rem;
+    }
+
+    .artisan-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 1rem;
+        margin: 1.5rem 0;
+    }
+
+    .artisan-card {
+        border-radius: 0.75rem;
+        padding-bottom: 0.75rem;
+    }
+
+    .artisan-img {
+        height: 140px;
+    }
+
+    .artisan-label {
+        font-size: 1rem;
+        margin-top: 0.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .artisan-section {
+        padding: 1rem 0.5rem;
+    }
+
+    .artisan-grid {
+        grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+        gap: 0.75rem;
+        margin: 1rem 0;
+    }
+
+    .artisan-card {
+        border-radius: 0.5rem;
+        padding-bottom: 0.5rem;
+    }
+
+    .artisan-img {
+        height: 120px;
+    }
+
+    .artisan-label {
+        font-size: 0.9rem;
+        margin-top: 0.4rem;
+    }
 }
