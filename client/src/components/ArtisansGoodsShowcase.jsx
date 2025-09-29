@@ -6,7 +6,7 @@ import treats from '../data/artisan_bestsellars'
 
 export default function ArtisansGoodsShowcase() {
   return (
-    <div>
+    <div className="artisan-section" >
       {/* Artisan Goods Showcase */}
       <motion.section
         className="landing-artisan"

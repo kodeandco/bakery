@@ -2,6 +2,7 @@
 * {
     max-width: 100vw;
     box-sizing: border-box;
+ 
 }
 
 body {
@@ -9,6 +10,7 @@ body {
     margin: 0;
     padding: 0;
     overflow-x: hidden;
+       background-color: rgb(105, 144, 122);
 }
 
 .landing-container {
@@ -20,8 +22,6 @@ body {
     max-width: 100vw;
     box-sizing: border-box;
 }
-
-
 
 .header h1 {
     font-size: 3rem;
@@ -115,7 +115,7 @@ body {
 .landing-hero {
     text-align: center;
     padding: 4rem 1rem 2rem 1rem;
-    background-color: rgba(83, 117, 82, 0.92);
+    /* background-color: rgba(83, 117, 82, 0.92); */
     width: 100%;
     max-width: 100vw;
     box-sizing: border-box;
@@ -145,51 +145,13 @@ body {
     text-align: center;
 }
 
-.artisan-card {
-    background-color: var(--bakery-cream);
-    border-radius: 1rem;
-    overflow: hidden;
-    text-align: center;
-    padding-bottom: 1rem;
-    transition: transform 0.3s ease;
-    width: 100%;
-    max-width: 100%;
-    box-sizing: border-box;
-}
-
-.artisan-card:hover {
-    transform: translateY(-5px);
-}
-
-.artisan-img {
-    width: 100%;
-    max-width: 100%;
-    height: 180px;
-    object-fit: cover;
-    border-bottom: 1px solid var(--bakery-light-olive);
-    transform: translateY(-100vh) rotate(-30deg);
-    animation: slideDownRotate 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
-}
-
-/* Staggered delays for artisan images */
-.artisan-img:nth-child(1) { animation-delay: 0.1s; }
-.artisan-img:nth-child(2) { animation-delay: 0.3s; }
-.artisan-img:nth-child(3) { animation-delay: 0.5s; }
-
-.artisan-label {
-    font-size: 1.1rem;
-    font-weight: 500;
-    margin-top: 0.7rem;
-    color: var(--bakery-dark-brown);
-}
-
 .landing-sustainability,
 .landing-quality,
 .landing-timeline,
 .landing-joy,
 .landing-flavors {
     margin: 2rem auto;
-    max-width: min(800px, calc(100vw - 4rem)); /* Responsive max-width */
+    max-width: min(800px, calc(100vw - 4rem));
     width: 100%;
     padding: 1rem;
     background-color: var(--bakery-pastel-yellow);

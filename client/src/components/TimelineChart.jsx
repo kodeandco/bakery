@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { useInView } from 'framer-motion';
 import './TimelineChart.css';
 
 const milestones = [
@@ -10,31 +11,31 @@ const milestones = [
     { year: '2023', event: 'Celebrating 13 Years of Deliciousness!' },
 ];
 
-const colors = [
-    "#fbeee6", // light brown
-    "#add6b2", // pastel green
-    "#a26464", // soft red
-    "#fbeee6", // light brown
-    "#add6b2", // pastel green
-    "#a26464", // soft red
-];
-
 const TimelineChart = () => {
     const [visibleItems, setVisibleItems] = useState([]);
+    const timelineRef = useRef(null);
+    const isInView = useInView(timelineRef, { amount: 0.2 });
 
     useEffect(() => {
-        const timer = setTimeout(() => {
-            milestones.forEach((_, index) => {
-                setTimeout(() => {
-                    setVisibleItems(prev => [...prev, index]);
-                }, index * 300);
-            });
-        }, 500);
+        if (isInView) {
+            // Reset visible items when component comes into view
+            setVisibleItems([]);
+            
+            const timer = setTimeout(() => {
+                milestones.forEach((_, index) => {
+                    setTimeout(() => {
+                        setVisibleItems(prev => [...prev, index]);
+                    }, index * 300);
+                });
+            }, 500);
 
-        return () => clearTimeout(timer);
-    }, []);
+            return () => clearTimeout(timer);
+        } else {
+            // Reset when out of view
+            setVisibleItems([]);
+        }
+    }, [isInView]);
 
-    // Generate squiggly path
     const generateSquigglyPath = () => {
         const height = milestones.length * 150;
         let path = `M 50 20`;
@@ -49,45 +50,23 @@ const TimelineChart = () => {
 
     return (
       <div className='timeline-container'>
-        <div style={{
-           
-            minHeight: '100vh',
-            padding: '40px 20px',
-            fontFamily: 'Arial, sans-serif'
-        }}>
-            <div style={{
-                display: 'flex',
-                flexDirection: 'row',
-                alignItems: 'flex-start',
-                maxWidth: '800px',
-                margin: '0 auto',
-                position: 'relative'
-            }}>
-                {/* SVG Squiggly Line */}
+        <div ref={timelineRef} className="timeline-wrapper">
+            <div className="timeline-content">
                 <svg 
                     width="100" 
                     height={milestones.length * 150 + 100}
-                    style={{ 
-                        position: 'absolute',
-                        left: 0,
-                        top: 0,
-                        zIndex: 0
-                    }}
+                    className="timeline-svg"
                 >
-                    {/* Yellow Squiggly Path */}
                     <path
                         d={generateSquigglyPath()}
                         stroke="#FFD700"
                         strokeWidth="4"
                         fill="none"
                         strokeDasharray="1000"
-                        strokeDashoffset="1000"
-                        style={{
-                            animation: 'drawPath 2s ease-out forwards'
-                        }}
+                        strokeDashoffset={isInView ? "0" : "1000"}
+                        className="timeline-path"
                     />
                     
-                    {/* Spiral decorations along the path */}
                     {milestones.map((_, index) => {
                         const y = index * 150 + 40;
                         const x = 50 + Math.sin(y * 0.02) * 15;
@@ -101,93 +80,36 @@ const TimelineChart = () => {
                                 fill="#FFD700"
                                 stroke="#FFA500"
                                 strokeWidth="2"
+                                className={`timeline-circle ${visibleItems.includes(index) ? 'visible' : ''}`}
                                 style={{
-                                    opacity: visibleItems.includes(index) ? 1 : 0,
-                                    transition: 'opacity 0.5s ease',
-                                    transformOrigin: `${x}px ${y}px`,
-                                    animation: visibleItems.includes(index) ? 'spiral 1s ease-out' : 'none'
+                                    transformOrigin: `${x}px ${y}px`
                                 }}
                             />
                         );
                     })}
                 </svg>
 
-                {/* Timeline Items */}
-                <div style={{
-                    position: 'relative',
-                    width: '400px',
-                    paddingLeft: '80px',
-                    zIndex: 1
-                }}>
+                <div className="timeline-items">
                     {milestones.map((milestone, index) => {
                         const isVisible = visibleItems.includes(index);
                         const isEven = index % 2 === 0;
+                        const colorIndex = index % 6;
                         
                         return (
                             <div
                                 key={index}
-                                style={{
-                                    position: 'relative',
-                                    padding: '20px 25px',
-                                    margin: '30px 0',
-                                    marginLeft: isEven ? '0' : '40px',
-                                    marginRight: isEven ? '40px' : '0',
-                                    borderRadius: '20px',
-                                    backgroundColor: colors[index % colors.length],
-                                    boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
-                                    minHeight: '80px',
-                                    transform: isVisible ? 'translateX(0) scale(1)' : `translateX(${isEven ? '-50px' : '50px'}) scale(0.8)`,
-                                    opacity: isVisible ? 1 : 0,
-                                    transition: 'all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
-                                    cursor: 'pointer',
-                                    overflow: 'hidden'
-                                }}
-                                onMouseEnter={(e) => {
-                                    e.target.style.transform = 'scale(1.05)';
-                                    e.target.style.boxShadow = '0 8px 25px rgba(0,0,0,0.25)';
-                                }}
-                                onMouseLeave={(e) => {
-                                    e.target.style.transform = 'scale(1)';
-                                    e.target.style.boxShadow = '0 4px 12px rgba(0,0,0,0.15)';
-                                }}
+                                className={`timeline-card ${isVisible ? 'visible' : ''} ${isEven ? 'even' : 'odd'} color-${colorIndex}`}
                             >
-                                {/* Decorative spiral background */}
-                                <div style={{
-                                    position: 'absolute',
-                                    top: '-10px',
-                                    right: '-10px',
-                                    width: '60px',
-                                    height: '60px',
-                                    background: 'linear-gradient(45deg, #FFD700, #FFA500)',
-                                    borderRadius: '50%',
-                                    opacity: 0.1,
-                                    transform: isVisible ? 'rotate(360deg) scale(1)' : 'rotate(0deg) scale(0)',
-                                    transition: 'all 1s ease-out',
-                                    transitionDelay: `${index * 0.1}s`
-                                }} />
+                                <div className={`timeline-card-decoration ${isVisible ? 'visible' : ''}`} 
+                                     style={{ transitionDelay: `${index * 0.1}s` }} />
                                 
-                                <div style={{
-                                    fontSize: '1.8rem',
-                                    fontWeight: 'bold',
-                                    color: '#2F4F2F',
-                                    marginBottom: '8px',
-                                    transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
-                                    opacity: isVisible ? 1 : 0,
-                                    transition: 'all 0.5s ease',
-                                    transitionDelay: `${index * 0.1 + 0.2}s`
-                                }}>
+                                <div className={`timeline-year ${isVisible ? 'visible' : ''}`}
+                                     style={{ transitionDelay: `${index * 0.1 + 0.2}s` }}>
                                     {milestone.year}
                                 </div>
                                 
-                                <div style={{
-                                    fontSize: '1.1rem',
-                                    color: '#556B2F',
-                                    lineHeight: '1.4',
-                                    transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
-                                    opacity: isVisible ? 1 : 0,
-                                    transition: 'all 0.5s ease',
-                                    transitionDelay: `${index * 0.1 + 0.4}s`
-                                }}>
+                                <div className={`timeline-event ${isVisible ? 'visible' : ''}`}
+                                     style={{ transitionDelay: `${index * 0.1 + 0.4}s` }}>
                                     {milestone.event}
                                 </div>
                             </div>
@@ -195,28 +117,8 @@ const TimelineChart = () => {
                     })}
                 </div>
             </div>
-
-            <style jsx>{`
-                @keyframes drawPath {
-                    to {
-                        stroke-dashoffset: 0;
-                    }
-                }
-                
-                @keyframes spiral {
-                    0% {
-                        transform: rotate(0deg) scale(0);
-                    }
-                    50% {
-                        transform: rotate(180deg) scale(1.2);
-                    }
-                    100% {
-                        transform: rotate(360deg) scale(1);
-                    }
-                }
-            `}</style>
-            </div>
         </div>
+      </div>
     );
 };
 

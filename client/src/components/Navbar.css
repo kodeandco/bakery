@@ -2,8 +2,8 @@
 
 /* Override any global styles that might interfere with sticky navbar */
 .navbar {
-    background-color: rgba(227, 220, 217, 0.95);
-    backdrop-filter: blur(10px);
+    background-color: transparent;
+    backdrop-filter: blur(2px);
     padding: 20px;
     display: flex;
     position: fixed !important; /* Add !important to override global styles */
@@ -16,7 +16,7 @@
     z-index: 1000 !important;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 0 4px 20px rgba(63, 54, 54, 0.15);
+  
     margin: 0 !important;
     transition: all 0.3s ease;
     /* Ensure no transforms that could break sticky positioning */
