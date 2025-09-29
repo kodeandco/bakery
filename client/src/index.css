@@ -1,6 +1,7 @@
 /* Global reset and overflow fix - but preserve navbar functionality */
 * {
   box-sizing: border-box;
+   
 }
 
 html, body {

@@ -1,22 +1,18 @@
 import React, { useRef, useEffect } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import "./CircleScroll.css";
 
-const CIRCLE_BG = "#4d2d1eff";
-
-const CircleScroll = ({ onScrollProgress, triggerElement }) => {
-  // Use the trigger element or document body for scroll detection
+const CircleScroll = ({ onScrollProgress, triggerElement, children }) => {
   const { scrollYProgress } = useScroll({
     target: triggerElement,
     offset: ["start center", "end center"]
   });
 
-  // Map scroll progress to scale and opacity for full screen circle animation
-  const scale = useTransform(scrollYProgress, [0, 0.6, 1], [0.1, 8, 0]);
-  const opacity = useTransform(
-    scrollYProgress,
-    [0, 0.1, 0.5, 0.9, 1],
-    [0, 0.3, 1, 1, 0]
+  // Transform scroll to clip-path circle radius
+  // Start large (150% to cover full screen), shrink to small circle, then expand back
+  const clipRadius = useTransform(
+    scrollYProgress, 
+    [0, 0.5, 1], 
+    ["150%", "0%", "150%"]
   );
 
   // Report scroll progress to parent component for background color changes
@@ -31,15 +27,20 @@ const CircleScroll = ({ onScrollProgress, triggerElement }) => {
 
   return (
     <motion.div
-      className="circle-scroll"
       style={{
-        background: CIRCLE_BG,
-        scale,
-        opacity,
-        x: "-50%",
-        y: "-50%"
+        clipPath: clipRadius.get() ? `circle(${clipRadius.get()} at 50% 50%)` : "none",
+        position: "relative",
+        width: "100%",
       }}
-    />
+    >
+      <motion.div
+        style={{
+          clipPath: useTransform(clipRadius, (r) => `circle(${r} at 50% 50%)`),
+        }}
+      >
+        {children}
+      </motion.div>
+    </motion.div>
   );
 };
 
